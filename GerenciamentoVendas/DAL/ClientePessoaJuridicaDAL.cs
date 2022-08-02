@@ -1,25 +1,24 @@
-﻿using System;
+﻿using GerenciamentoVendas.DAL.BancoDados;
+using GerenciamentoVendas.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
-using GerenciamentoVendas.DAL.BancoDados;
-using GerenciamentoVendas.Models;
-using GerenciamentoVendas.Models.Enums;
 
 namespace GerenciamentoVendas.DAL
 {
-    public class UsuarioDAL
+    public class ClientePessoaJuridicaDAL
     {
-        public static List<Usuario> GetAllUsuarios()
+        public static List<ClientePessoaJuridica> GetAllClientePessoaJuridica()
         {
-            List<Usuario> list = new List<Usuario>();
+            List<ClientePessoaJuridica> list = new List<ClientePessoaJuridica>();
 
             try
             {
                 StringBuilder sql = new StringBuilder();
 
                 //Query do Banco de Dados
-                sql.Append(" SELECT * FROM bd_gerenciadorvendas.usuarios; ");
+                sql.Append(" SELECT * FROM bd_gerenciadorvendas.cliente_pessoa_juridica; ");
 
                 //Conexão banco
                 Command cmd = new Command();
@@ -33,10 +32,13 @@ namespace GerenciamentoVendas.DAL
                     {
                         int id = Convert.ToInt32(linha["ID"].ToString());
                         string nome = linha["NOME"].ToString();
-                        string email = linha["EMAIL"].ToString();
-                        string regiao = linha["REGIAO"].ToString();
+                        string cnpj = linha["CNPJ"].ToString();
+                        double valor = Convert.ToDouble(linha["VALOR_MONETARIO"].ToString());
+                        string razao = linha["RAZAO_SOCIAL"].ToString();
+                        string atividades = linha["ATIVIDADES"].ToString();
+                        int codigoUsuario = Convert.ToInt32(linha["CODIGO_USUARIO"].ToString());
 
-                        list.Add(new Usuario(id, nome, email, Enum.Parse<Regioes>(regiao)));
+                        list.Add(new ClientePessoaJuridica(id, nome, cnpj, valor, razao, atividades, new Usuario(codigoUsuario)));
                     }
                 }
 
@@ -51,16 +53,16 @@ namespace GerenciamentoVendas.DAL
 
         }
 
-        public static Usuario GetByIdUsuario(int id)
+        public static ClientePessoaJuridica GetByIdClientePessoaJuridica(int id)
         {
-            Usuario usuario = new Usuario();
+            ClientePessoaJuridica cliente = new ClientePessoaJuridica();
 
             try
             {
                 StringBuilder sql = new StringBuilder();
 
                 //Query do Banco de Dados
-                sql.Append($" SELECT * FROM bd_gerenciadorvendas.usuarios ");
+                sql.Append($" SELECT * FROM bd_gerenciadorvendas.cliente_pessoa_juridica ");
                 sql.Append($" WHERE ID = {id};");
 
                 //Conexão banco
@@ -72,30 +74,32 @@ namespace GerenciamentoVendas.DAL
                 if (retorno.Rows.Count > 0)
                 {
                     DataRow linha = retorno.Rows[0];
-                    usuario.Id = Convert.ToInt32(linha["ID"].ToString());
-                    usuario.Nome = linha["NOME"].ToString();
-                    usuario.Email = linha["EMAIL"].ToString();
-                    usuario.Regioes = Enum.Parse<Regioes>(linha["REGIAO"].ToString());
+                    cliente.Id = Convert.ToInt32(linha["ID"].ToString());
+                    cliente.Nome = linha["NOME"].ToString();
+                    cliente.Cnpj = linha["CNPJ"].ToString();
+                    cliente.ValorMonetario = Convert.ToDouble(linha["VALOR_MONETARIO"].ToString());
+                    cliente.RazaoSocial = linha["RAZAO_SOCIAL"].ToString();
+                    cliente.Atividades = linha["ATIVIDADES"].ToString();
                 }
-                return usuario;
+                return cliente;
             }
             catch (Exception)
             {
                 return null;
             }
         }
-
-        public static bool PostUsuario(Usuario usuario, string mensagem)
+        public static bool PostClientePessoaJuridica(ClientePessoaJuridica cliente, string mensagem)
         {
             try
             {
                 Command cmd = new Command();
                 StringBuilder sql = new StringBuilder();
 
-                sql.AppendLine($" INSERT INTO bd_gerenciadorvendas.usuarios (NOME, EMAIL, REGIAO) ");
-                sql.AppendLine($" VALUES ('{usuario.Nome}', '{usuario.Email}', '{Enum.Parse<Regioes>(usuario.Regioes.ToString())}')");
+                sql.AppendLine($" INSERT INTO bd_gerenciadorvendas.cliente_pessoa_juridica (NOME, CNPJ, VALOR_MONETARIO, RAZAO_SOCIAL, ATIVIDADES, CODIGO_USUARIO) ");
+                sql.AppendLine($" VALUES ('{cliente.Nome}','{cliente.Cnpj}', '{cliente.ValorMonetario}', '{cliente.RazaoSocial}', '{cliente.Atividades}', '{cliente.Usuario.Id}')");
 
                 cmd.CommandText = sql.ToString();
+
                 int retorno = cmd.Execute();
                 if (retorno > 0)
                 {
@@ -114,6 +118,5 @@ namespace GerenciamentoVendas.DAL
                 return false;
             }
         }
-
     }
 }

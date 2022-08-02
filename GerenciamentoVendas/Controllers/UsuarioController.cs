@@ -1,27 +1,55 @@
-﻿using GerenciamentoVendas.DAL;
-using GerenciamentoVendas.Models;
-using GerenciamentoVendas.Models.Enums;
+﻿using GerenciamentoVendas.Models;
+using GerenciamentoVendas.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System;
 
 namespace GerenciamentoVendas.Controllers
 {
     [Route("api/[controller]")]
     public class UsuarioController : ControllerBase
     {
-        private List<Usuario> _usuario = new List<Usuario>
-        {
-            new Usuario(1, "Iago", "iago@hotmail.com", Regioes.CentroOeste),
-            new Usuario(2, "Daiane", "daiane@hotmail.com", Regioes.Norte)
-        };
 
-        public object UsuarioDal { get; private set; }
-
+        // GET Geral
         [HttpGet]
         public IActionResult Get()
         {
-            UsuarioDAL.GetUsuarios();
-            return Ok(_usuario);
+            List<Usuario> list = UsuarioService.GetAllUsuarios();
+            return Ok(list);
+
+        }
+
+        // GET por Id
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            Usuario usuario = UsuarioService.GetByIdUsuario(id);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+            return Ok(usuario);
+        }
+
+        // POST api/values
+        [HttpPost]
+        public void Post([FromBody] Usuario usuario)
+        {
+            string mensagem = "";
+
+            if (usuario == null || usuario.Regioes == 0)
+            {
+                throw new ArgumentNullException("Enviar todos os dados para Cadastrar o Usuário");
+            }
+
+            try
+            {
+                UsuarioService.PostUsuario(usuario, mensagem);
+            }
+            catch (Exception e)
+            {
+                mensagem = $"Error: {e.Message}";
+            }
         }
     }
 }
