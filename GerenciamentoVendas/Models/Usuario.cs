@@ -11,6 +11,7 @@ namespace GerenciamentoVendas.Models
         public string Email { get; set; }
         public Regioes Regioes { get; set; }
         public DateTime DataAtualizacaoRegiao { get; set; }
+        public ClientePessoaJuridica ClientePessoaJuridica { get; set; }
 
         public Usuario()
         {
@@ -24,6 +25,14 @@ namespace GerenciamentoVendas.Models
             this.Email = usuario.Email;
             this.Regioes = usuario.Regioes;
             this.DataAtualizacaoRegiao = usuario.DataAtualizacaoRegiao;
+        }
+
+        public Usuario(int id, string nome, string email, Regioes regioes, ClientePessoaJuridica clientePessoaJuridica)
+            : base(id, nome)
+        {
+            Email = email;
+            Regioes = regioes;
+            ClientePessoaJuridica = clientePessoaJuridica;
         }
 
         public Usuario(int id, string nome, string email, Regioes regioes, DateTime data)

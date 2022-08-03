@@ -1,5 +1,5 @@
-﻿
-using System;
+﻿using System;
+using GerenciamentoVendas.Services;
 
 namespace GerenciamentoVendas.Models
 {
@@ -14,6 +14,25 @@ namespace GerenciamentoVendas.Models
 
         public ClientePessoaJuridica()
         {
+        }
+
+        public ClientePessoaJuridica(int id)
+        {
+            ClientePessoaJuridica cliente = ClientePessoaJuridicaService.GetByIdClientePessoaJuridica(id);
+            this.Id = cliente.Id;
+            this.Nome = cliente.Nome;
+            this.Cnpj = cliente.Cnpj;
+            this.ValorMonetario = cliente.ValorMonetario;
+            this.RazaoSocial = cliente.RazaoSocial;
+            this.Atividades = cliente.Atividades;
+        }
+
+        public ClientePessoaJuridica(string cnpj, string razaoSocial, double valorMonetario, string atividades)
+        {
+            Cnpj = cnpj;
+            RazaoSocial = razaoSocial;
+            ValorMonetario = valorMonetario;
+            Atividades = atividades;
         }
 
         public ClientePessoaJuridica(int id, string nome, string cnpj, double valorMonetario, string razaoSocial, string atividades, Usuario usuario)

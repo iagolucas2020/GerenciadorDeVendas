@@ -19,6 +19,18 @@ namespace GerenciamentoVendas.Controllers
 
         }
 
+        //Get Oportunidades Usuário
+        [HttpGet("GetOportunidadesUsuario")]
+        public IActionResult GetOportunidadesUsuario([FromQuery] int id)
+        {
+            if (String.IsNullOrEmpty(id.ToString()))
+            {
+                throw new ArgumentNullException("Preencher com o Id para puxar as oportunidades do usuário.");
+            }
+            List<Usuario> lista = UsuarioService.GetOportunidadesUsuario(id);
+            return Ok(lista);
+        }
+
         // GET por Id
         [HttpGet("{id}")]
         public IActionResult GetById(int id)

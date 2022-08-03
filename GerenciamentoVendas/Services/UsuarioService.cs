@@ -21,7 +21,6 @@ namespace GerenciamentoVendas.Services
                 return null;
             }
         }
-
         public static Usuario GetByIdUsuario(int id)
         {
             try
@@ -34,7 +33,18 @@ namespace GerenciamentoVendas.Services
                 return null;
             }
         }
-
+        public static List<Usuario> GetOportunidadesUsuario(int id)
+        {
+            try
+            {
+                return UsuarioDAL.GetOportunidadesUsuario(id);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
         public static bool PostUsuario(Usuario usuario, string mensagem)
         {
             try
@@ -53,7 +63,6 @@ namespace GerenciamentoVendas.Services
                 return false;
             }
         }
-
         public static bool UpDateDataAtualizacao(int id, string mensagem)
         {
             try
@@ -66,7 +75,5 @@ namespace GerenciamentoVendas.Services
                 return false;
             }
         }
-
-
     }
 }

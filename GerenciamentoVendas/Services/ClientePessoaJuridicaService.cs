@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GerenciamentoVendas.Services
 {
-    public class ClientePessoaJuridicaServiceDAL
+    public class ClientePessoaJuridicaService
     {
         public static List<ClientePessoaJuridica> GetAllClientePessoaJuridica()
         {
@@ -21,7 +21,6 @@ namespace GerenciamentoVendas.Services
                 return null;
             }
         }
-
         public static ClientePessoaJuridica GetByIdClientePessoaJuridica(int id)
         {
             try

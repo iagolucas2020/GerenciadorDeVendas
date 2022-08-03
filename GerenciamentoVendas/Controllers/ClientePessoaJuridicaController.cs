@@ -22,7 +22,7 @@ namespace GerenciamentoVendas.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            List<ClientePessoaJuridica> list = ClientePessoaJuridicaServiceDAL.GetAllClientePessoaJuridica();
+            List<ClientePessoaJuridica> list = ClientePessoaJuridicaService.GetAllClientePessoaJuridica();
             return Ok(list);
 
         }
@@ -31,7 +31,7 @@ namespace GerenciamentoVendas.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            ClientePessoaJuridica cliente = ClientePessoaJuridicaServiceDAL.GetByIdClientePessoaJuridica(id);
+            ClientePessoaJuridica cliente = ClientePessoaJuridicaService.GetByIdClientePessoaJuridica(id);
             if (cliente == null)
             {
                 return NotFound();
@@ -57,11 +57,19 @@ namespace GerenciamentoVendas.Controllers
 
                 //Puxar lista de usuarios cadastrados com o codigo da Região
                 List<Usuario> listUsuarios = UsuarioService.GetAllUsuarios();
-                Usuario user = listUsuarios.Find(u => u.Regioes == Enum.Parse<Regioes>(cliente.CodigoIbge.ToString().Substring(0, 1)));
-                //List<Usuario> users = listUsuarios.FindAll(u => u.Regioes == (Enum.Parse<Regioes>(cliente.CodigoIbge.ToString().Substring(0, 1))));
+
+                //Filtrar Usuario que esta mais tempo se receber contato da região que vai receber o contato
+                List<Usuario> users = listUsuarios.FindAll(u => u.Regioes == (Enum.Parse<Regioes>(cliente.CodigoIbge.ToString().Substring(0, 1))));
+                if (users.Count == 0)
+                {
+                    throw new ArgumentNullException("Não existe Usuario nesta região, por favor realizar o cadastro de usuário nesta região antes.");
+                }
+                DateTime MinDate = (from d in users select d.DataAtualizacaoRegiao).Min();
+                Usuario user = users.Find(u => u.DataAtualizacaoRegiao == MinDate);
+
 
                 //Fazer Insert do cliente
-                ClientePessoaJuridicaServiceDAL.PostClientePessoaJuridica(cliente, user.Id, mensagem);
+                ClientePessoaJuridicaService.PostClientePessoaJuridica(cliente, user.Id, mensagem);
 
                 //Update Data de Atualização da Região
                 UsuarioService.UpDateDataAtualizacao(user.Id, mensagem);
