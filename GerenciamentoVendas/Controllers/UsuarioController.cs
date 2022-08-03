@@ -3,12 +3,24 @@ using GerenciamentoVendas.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System;
+using System.IO;
 
 namespace GerenciamentoVendas.Controllers
 {
     [Route("api/[controller]")]
     public class UsuarioController : ControllerBase
     {
+
+        [HttpGet("Index")]
+        public IActionResult View()
+        {
+            var html = System.IO.File.ReadAllText(@"./Views/Home/Index.cshtml"); ;
+            return new ContentResult
+            {
+                Content = html,
+                ContentType = "text/html"
+            };
+        }
 
         // GET Geral
         [HttpGet]

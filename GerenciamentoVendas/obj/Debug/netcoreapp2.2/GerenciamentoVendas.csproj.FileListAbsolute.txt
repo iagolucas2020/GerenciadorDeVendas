@@ -36,3 +36,12 @@ C:\Users\iagol\Desktop\GerenciamentoVendasAtualizado\GerenciadorDeVendas\Gerenci
 C:\Users\iagol\Desktop\GerenciamentoVendasAtualizado\GerenciadorDeVendas\GerenciamentoVendas\bin\Debug\netcoreapp2.2\GerenciamentoVendas.pdb
 C:\Users\iagol\Desktop\GerenciamentoVendasAtualizado\GerenciadorDeVendas\GerenciamentoVendas\obj\Debug\netcoreapp2.2\GerenciamentoVendas.RazorTargetAssemblyInfo.cache
 C:\Users\iagol\Desktop\GerenciamentoVendasAtualizado\GerenciadorDeVendas\GerenciamentoVendas\obj\Debug\netcoreapp2.2\GerenciamentoVendas.genruntimeconfig.cache
+C:\Users\iagol\Desktop\GerenciamentoVendasAtualizado\GerenciadorDeVendas\GerenciamentoVendas\bin\Debug\netcoreapp2.2\GerenciamentoVendas.Views.dll
+C:\Users\iagol\Desktop\GerenciamentoVendasAtualizado\GerenciadorDeVendas\GerenciamentoVendas\bin\Debug\netcoreapp2.2\GerenciamentoVendas.Views.pdb
+C:\Users\iagol\Desktop\GerenciamentoVendasAtualizado\GerenciadorDeVendas\GerenciamentoVendas\obj\Debug\netcoreapp2.2\GerenciamentoVendas.TagHelpers.input.cache
+C:\Users\iagol\Desktop\GerenciamentoVendasAtualizado\GerenciadorDeVendas\GerenciamentoVendas\obj\Debug\netcoreapp2.2\GerenciamentoVendas.TagHelpers.output.cache
+C:\Users\iagol\Desktop\GerenciamentoVendasAtualizado\GerenciadorDeVendas\GerenciamentoVendas\obj\Debug\netcoreapp2.2\GerenciamentoVendas.RazorCoreGenerate.cache
+C:\Users\iagol\Desktop\GerenciamentoVendasAtualizado\GerenciadorDeVendas\GerenciamentoVendas\obj\Debug\netcoreapp2.2\GerenciamentoVendas.RazorTargetAssemblyInfo.cs
+C:\Users\iagol\Desktop\GerenciamentoVendasAtualizado\GerenciadorDeVendas\GerenciamentoVendas\obj\Debug\netcoreapp2.2\GerenciamentoVendas.Views.pdb
+C:\Users\iagol\Desktop\GerenciamentoVendasAtualizado\GerenciadorDeVendas\GerenciamentoVendas\obj\Debug\netcoreapp2.2\GerenciamentoVendas.csproj.CopyComplete
+C:\Users\iagol\Desktop\GerenciamentoVendasAtualizado\GerenciadorDeVendas\GerenciamentoVendas\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.cshtml.g.cs
