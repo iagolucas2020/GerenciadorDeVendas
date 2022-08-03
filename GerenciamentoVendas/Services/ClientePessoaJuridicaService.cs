@@ -34,11 +34,11 @@ namespace GerenciamentoVendas.Services
                 return null;
             }
         }
-        public static bool PostClientePessoaJuridica(ClientePessoaJuridica cliente, string mensagem)
+        public static bool PostClientePessoaJuridica(ClientePessoaJuridica cliente, int idUsuario, string mensagem)
         {
             try
             {
-                return ClientePessoaJuridicaDAL.PostClientePessoaJuridica(cliente, mensagem);
+                return ClientePessoaJuridicaDAL.PostClientePessoaJuridica(cliente, idUsuario, mensagem);
             }
             catch (Exception e)
             {

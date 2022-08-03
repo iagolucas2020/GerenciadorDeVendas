@@ -35,8 +35,15 @@ namespace GerenciamentoVendas.DAL
                         string nome = linha["NOME"].ToString();
                         string email = linha["EMAIL"].ToString();
                         string regiao = linha["REGIAO"].ToString();
+                        DateTime data = !(String.IsNullOrEmpty(linha["DATA_ATUALIZACAO_REGIAO"].ToString())) ? Convert.ToDateTime(linha["DATA_ATUALIZACAO_REGIAO"].ToString()) : Convert.ToDateTime(null);
 
-                        list.Add(new Usuario(id, nome, email, Enum.Parse<Regioes>(regiao)));
+                        list.Add(new Usuario { 
+                            Id = id,
+                            Nome = nome,
+                            Email = email,
+                            Regioes = Enum.Parse<Regioes>(regiao),
+                            DataAtualizacaoRegiao = data
+                        });
                     }
                 }
 
@@ -50,7 +57,6 @@ namespace GerenciamentoVendas.DAL
             }
 
         }
-
         public static Usuario GetByIdUsuario(int id)
         {
             Usuario usuario = new Usuario();
@@ -84,7 +90,6 @@ namespace GerenciamentoVendas.DAL
                 return null;
             }
         }
-
         public static bool PostUsuario(Usuario usuario, string mensagem)
         {
             try
@@ -94,6 +99,37 @@ namespace GerenciamentoVendas.DAL
 
                 sql.AppendLine($" INSERT INTO bd_gerenciadorvendas.usuarios (NOME, EMAIL, REGIAO) ");
                 sql.AppendLine($" VALUES ('{usuario.Nome}', '{usuario.Email}', '{Enum.Parse<Regioes>(usuario.Regioes.ToString())}')");
+
+                cmd.CommandText = sql.ToString();
+                int retorno = cmd.Execute();
+                if (retorno > 0)
+                {
+                    mensagem = "Dados Cadastrados com Sucesso";
+                    return true;
+                }
+                else
+                {
+                    mensagem = "Não foi possível realizar o cadastro";
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                mensagem = $"Error: {e.Message}";
+                return false;
+            }
+        }
+        public static bool UpDateDataAtualizacao(int id, string mensagem)
+        {
+            try
+            {
+                Command cmd = new Command();
+                StringBuilder sql = new StringBuilder();
+
+                sql.AppendLine($" UPDATE bd_gerenciadorvendas.usuarios ");
+                sql.AppendLine($" SET ");
+                sql.AppendLine($" DATA_ATUALIZACAO_REGIAO = '{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}' ");
+                sql.AppendLine($" WHERE ID = {id} ");
 
                 cmd.CommandText = sql.ToString();
                 int retorno = cmd.Execute();

@@ -45,7 +45,7 @@ namespace GerenciamentoVendas.Services
                     return false;
                 };
                 return UsuarioDAL.PostUsuario(usuario, mensagem);
-                
+
             }
             catch (Exception e)
             {
@@ -53,5 +53,20 @@ namespace GerenciamentoVendas.Services
                 return false;
             }
         }
+
+        public static bool UpDateDataAtualizacao(int id, string mensagem)
+        {
+            try
+            {
+                return UsuarioDAL.UpDateDataAtualizacao(id, mensagem);
+            }
+            catch (Exception e)
+            {
+                mensagem = $"Error: {e.Message}";
+                return false;
+            }
+        }
+
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using GerenciamentoVendas.DAL;
 using GerenciamentoVendas.Models.Enums;
 using GerenciamentoVendas.Services;
+using System;
 using System.Collections.Generic;
 
 namespace GerenciamentoVendas.Models
@@ -9,6 +10,7 @@ namespace GerenciamentoVendas.Models
     {
         public string Email { get; set; }
         public Regioes Regioes { get; set; }
+        public DateTime DataAtualizacaoRegiao { get; set; }
 
         public Usuario()
         {
@@ -21,13 +23,15 @@ namespace GerenciamentoVendas.Models
             this.Nome = usuario.Nome;
             this.Email = usuario.Email;
             this.Regioes = usuario.Regioes;
+            this.DataAtualizacaoRegiao = usuario.DataAtualizacaoRegiao;
         }
 
-        public Usuario(int id, string nome, string email, Regioes regioes)
+        public Usuario(int id, string nome, string email, Regioes regioes, DateTime data)
             : base(id, nome)
         {
             Email = email;
             Regioes = regioes;
+            DataAtualizacaoRegiao = data;
         }
 
         public bool VerificarCadastroEmail(Usuario usuario)

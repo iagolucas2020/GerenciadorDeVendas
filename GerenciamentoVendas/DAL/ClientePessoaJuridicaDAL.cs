@@ -52,7 +52,6 @@ namespace GerenciamentoVendas.DAL
             }
 
         }
-
         public static ClientePessoaJuridica GetByIdClientePessoaJuridica(int id)
         {
             ClientePessoaJuridica cliente = new ClientePessoaJuridica();
@@ -88,7 +87,7 @@ namespace GerenciamentoVendas.DAL
                 return null;
             }
         }
-        public static bool PostClientePessoaJuridica(ClientePessoaJuridica cliente, string mensagem)
+        public static bool PostClientePessoaJuridica(ClientePessoaJuridica cliente, int idUsuario, string mensagem)
         {
             try
             {
@@ -96,7 +95,7 @@ namespace GerenciamentoVendas.DAL
                 StringBuilder sql = new StringBuilder();
 
                 sql.AppendLine($" INSERT INTO bd_gerenciadorvendas.cliente_pessoa_juridica (NOME, CNPJ, VALOR_MONETARIO, RAZAO_SOCIAL, ATIVIDADES, CODIGO_USUARIO) ");
-                sql.AppendLine($" VALUES ('{cliente.Nome}','{cliente.Cnpj}', '{cliente.ValorMonetario}', '{cliente.RazaoSocial}', '{cliente.Atividades}', '{cliente.Usuario.Id}')");
+                sql.AppendLine($" VALUES ('{cliente.Nome}','{cliente.Cnpj}', '{cliente.ValorMonetario}', '{cliente.RazaoSocial}', '{cliente.Atividades}', '{idUsuario}')");
 
                 cmd.CommandText = sql.ToString();
 
