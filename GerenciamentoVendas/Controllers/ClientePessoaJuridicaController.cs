@@ -24,7 +24,6 @@ namespace GerenciamentoVendas.Controllers
         {
             List<ClientePessoaJuridica> list = ClientePessoaJuridicaService.GetAllClientePessoaJuridica();
             return Ok(list);
-
         }
 
         // GET por Id

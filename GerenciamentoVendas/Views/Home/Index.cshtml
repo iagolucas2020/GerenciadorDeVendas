@@ -14,7 +14,17 @@
     <style>
         .tabelas {
             margin-top: 50px;
-            text-align: center;            
+            text-align: center;
+        }
+
+        #cadastroUsuario {
+            border: solid 1px gray;
+            padding: 40px;
+            background: #d3d3d3;
+        }
+
+        .formCadastro {
+            margin-top: 30px;
         }
     </style>
 </head>
@@ -23,26 +33,60 @@
 
 <body>
     <div class="container">
-        <div class="row">
+        <div>
+            <div class="row">
+                <div class="col-6 formCadastro" id="cadastroUsuario">
+                    <h5 style="text-align:center">Cadastro de Usuários</h5>
+                    <div class="row">
+                        <form>
+                            <div class="row">
+                                <div class="form-group m-2">
+                                    <label for="nome">Nome</label>
+                                    <input type="text" class="form-control" id="nomeUsuario">
+                                </div>
+                                <div class="form-group m-2">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="emailUsuario">
+                                </div>
+                                <div class="form-group m-2">
+                                    <label for="regiao">Região</label>
+                                    <select id="regiao" class="form-control">
+                                        <option selected>Selecione a região...</option>
+                                        <option value="1">Norte</option>
+                                        <option value="2">Nordeste</option>
+                                        <option value="3">Sudeste</option>
+                                        <option value="4">Sul</option>
+                                        <option value="5">Centro Oeste</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group m-2">
+                                <button onclick="GravarUsuario()" style="text-align:center" class="btn btn-success gravarUsuario">Gravar</button>
+                            </div>
+                        </form>
+                    </div>
 
-            <div class="col-6 tabelas">
-                <h5>Usuários Cadastrados</h5>
-                <table class="table table-dark table-striped table-bordered">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Id</th>
-                            <th>Nome</th>
-                            <th>Email</th>
-                            <th>Região</th>
-                            <th>Data de Atualização</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableDadosUsuario">
-                    </tbody>
-                </table>
+                </div>
+
+                <div class="col-6 tabelas">
+                    <h5>Usuários Cadastrados</h5>
+                    <table class="table table-dark table-striped table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Id</th>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Região</th>
+                                <th>Atualização da Região</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableDadosUsuario">
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <div class="col-6 tabelas">
+            <!--<div class="col-6 tabelas">
                 <h5>Clientes Cadastrados</h5>
                 <table class="table table-dark table-striped table-bordered">
                     <thead>
@@ -59,13 +103,30 @@
                     <tbody id="tableDadosClientes">
                     </tbody>
                 </table>
-            </div>
+            </div>-->
         </div>
+
     </div>
 
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
+
+        function GravarUsuario() {
+
+            const url = "/api/Usuario";
+
+            let nome = document.getElementById('nomeUsuario').value;
+            let email = document.getElementById('emailUsuario').value;
+            let regiao = document.getElementById('regiao').value;
+
+            if (nome == "" || email == "" || regiao == "") {
+                alert("Preencher todos os dados do Usuário");
+                return
+            }
+
+            axios.post(url, { nome: nome, email: email, regioes: regiao})
+        }
 
         async function init() {
             //Usuario cadastrados
@@ -73,8 +134,8 @@
             MontarTabelaUsuario(dadosUsuario);
 
             //Clientes cadastrados
-            const dadosClientes = await BuscarClientes();
-            MontarTabelaClientes(dadosClientes);
+            //const dadosClientes = await BuscarClientes();
+            //MontarTabelaClientes(dadosClientes);
         }
 
         //Usuarios cadastrados
@@ -152,7 +213,5 @@
         init();
     </script>
 </body>
-
-
 
 </html>
