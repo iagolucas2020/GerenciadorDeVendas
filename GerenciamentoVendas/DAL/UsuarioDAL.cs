@@ -100,7 +100,7 @@ namespace GerenciamentoVendas.DAL
                 StringBuilder sql = new StringBuilder();
 
                 //Query do Banco de Dados
-                sql.Append(" SELECT uss.ID, uss.NOME, uss.EMAIL, uss.REGIAO, cpj.CNPJ, cpj.RAZAO_SOCIAL, cpj.VALOR_MONETARIO, cpj.ATIVIDADES, cpj.ID`IDCLIENTE`  FROM bd_gerenciadorvendas.cliente_pessoa_juridica as cpj ");
+                sql.Append(" SELECT uss.ID, uss.NOME, uss.EMAIL, uss.REGIAO, uss.DATA_ATUALIZACAO_REGIAO, cpj.CNPJ, cpj.RAZAO_SOCIAL, cpj.VALOR_MONETARIO, cpj.ATIVIDADES, cpj.ID`IDCLIENTE`  FROM bd_gerenciadorvendas.cliente_pessoa_juridica as cpj ");
                 sql.Append(" LEFT JOIN bd_gerenciadorvendas.usuarios as uss on cpj.CODIGO_USUARIO = uss.ID ");
                 sql.Append($" WHERE uss.ID = {id} ");
 
@@ -122,12 +122,14 @@ namespace GerenciamentoVendas.DAL
                         string razao = linha["RAZAO_SOCIAL"].ToString();
                         double valor = Convert.ToDouble(linha["VALOR_MONETARIO"].ToString());
                         string atividades = linha["ATIVIDADES"].ToString();
+                        DateTime data = !(String.IsNullOrEmpty(linha["DATA_ATUALIZACAO_REGIAO"].ToString())) ? Convert.ToDateTime(linha["DATA_ATUALIZACAO_REGIAO"].ToString()) : Convert.ToDateTime(null);
                         int idCliente = Convert.ToInt32(linha["IDCLIENTE"].ToString());
 
                         list.Add(new Usuario(
                             idUsuario,
                             nome,
                             email,
+                            data,
                             Enum.Parse<Regioes>(regiao),
                             new ClientePessoaJuridica(idCliente)
                         ));

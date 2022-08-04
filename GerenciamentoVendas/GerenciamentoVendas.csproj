@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Views\Home\script.js" />
+    <None Remove="Views\Usuarios\script.js" />
   </ItemGroup>
 
   <ItemGroup>

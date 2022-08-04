@@ -44,4 +44,5 @@ C:\Users\iagol\Desktop\GerenciamentoVendasAtualizado\GerenciadorDeVendas\Gerenci
 C:\Users\iagol\Desktop\GerenciamentoVendasAtualizado\GerenciadorDeVendas\GerenciamentoVendas\obj\Debug\netcoreapp2.2\GerenciamentoVendas.RazorTargetAssemblyInfo.cs
 C:\Users\iagol\Desktop\GerenciamentoVendasAtualizado\GerenciadorDeVendas\GerenciamentoVendas\obj\Debug\netcoreapp2.2\GerenciamentoVendas.Views.pdb
 C:\Users\iagol\Desktop\GerenciamentoVendasAtualizado\GerenciadorDeVendas\GerenciamentoVendas\obj\Debug\netcoreapp2.2\GerenciamentoVendas.csproj.CopyComplete
-C:\Users\iagol\Desktop\GerenciamentoVendasAtualizado\GerenciadorDeVendas\GerenciamentoVendas\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\iagol\Desktop\GerenciamentoVendasAtualizado\GerenciadorDeVendas\GerenciamentoVendas\obj\Debug\netcoreapp2.2\Razor\Views\Usuarios\Usuarios.cshtml.g.cs
+C:\Users\iagol\Desktop\GerenciamentoVendasAtualizado\GerenciadorDeVendas\GerenciamentoVendas\obj\Debug\netcoreapp2.2\Razor\Views\Clientes\Clientes.cshtml.g.cs

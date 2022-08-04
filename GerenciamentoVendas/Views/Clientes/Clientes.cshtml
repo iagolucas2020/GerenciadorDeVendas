@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <title>Gerenciador Vendas</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+
+        body {
+            background-color: #f7f7f7;
+        }
+
+        .tabelas {
+            margin-top: 3px;
+            text-align: center;
+            padding: 0px;
+        }
+
+        #cadastro {
+            border: solid 1px gray;
+            padding: 40px;
+            background: #d3d3d3;
+        }
+
+        .form {
+            margin-top: 30px;
+        }
+
+        /* HEADER */
+
+        #header {
+            text-align: center;
+            padding: 20px;
+            border-bottom: 1px solid #ccc;
+        }
+
+            #header p {
+                margin-bottom: 0;
+            }
+
+        /* NAVBAR */
+
+        #navbar {
+            padding: 10px;
+            margin: 10px auto;
+        }
+
+            #navbar a {
+                width: 150px;
+                color: #444;
+                text-align: center;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                margin: 5px;
+            }
+
+                #navbar a:hover {
+                    color: goldenrod;
+                    background-color: beige;
+                }
+
+        a.disabled {
+            pointer-events: none;
+            cursor: default;
+            background-color: #d3d3d3;
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <!-- HEADER -->
+    <div class="container-fluid">
+        <header class="row" id="header">
+            <h3 class="text-success">Cadastro Clientes</h3>
+        </header>
+        <nav id="navbar" class="container">
+            <div class="row justify-content-center">
+                <a href="/api/Usuario/Usuarios?#">Usuários</a>
+                <a href="/api/ClientePessoaJuridica/Clientes?#" class="disabled">Clientes</a>
+                <a href="#">Oportunidades</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="row">
+                <form class="form" id="cadastro">
+                    <div class="row">
+                        <div class="col form-group m-2">
+                            <label for="cnpj">CNPJ</label>
+                            <input type="text" class="form-control" id="cnpj">
+                        </div>
+                        <div class="col form-group m-2">
+                            <label for="nome">Nome</label>
+                            <input type="text" class="form-control" id="nome">
+                        </div>
+                        <div class="col form-group m-2">
+                            <label for="valor">Valor Monetário</label>
+                            <input type="number" class="form-control" id="valor">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1 offset-md-11">
+                            <button onclick="Gravar()" style="text-align:center" class="btn btn-success gravarUsuario">Gravar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="row">
+                <div class="tabelas">
+                    <table class="table table-dark table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nome</th>
+                                <th>Cnpj</th>
+                                <th>Razão Social</th>
+                                <th>Valor Monetário</th>
+                                <th>Atividades</th>
+                                <th>Usuário Responsável</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableDadosClientes">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+
+        async function Gravar() {
+            debugger;
+            const url = "/api/ClientePessoaJuridica";
+
+            let cnpj = document.getElementById('cnpj');
+            let nome = document.getElementById('nome');
+            let valor = document.getElementById('valor');
+            valor.value.replace(",", ".");
+
+            if (cnpj.value == "" || nome.value == "" || valor.value == "") {
+                alert("Preencher todos os dados, para o Cliente!");
+                return
+            }
+
+            await axios.post(url, { cnpj: cnpj.value, nome: nome.value, valorMonetario: valor.value })
+                .then(function (result) {
+                    alert('Success');
+                    limpar(cnpj, nome, valor);
+                    init();
+                })
+                .catch(function (error) {
+                    if (error.response) {
+                        alert(error.response.data);
+                    }
+                });;
+        }
+
+        function limpar(cnpj, nome, valor) {
+            cnpj.value = "";
+            nome.value = "";
+            valor.value = "";
+        }
+
+        async function init() {
+            //Clientes cadastrados
+            $('#tableDadosClientes').empty();
+            const dadosClientes = await BuscarClientes();
+            MontarTabelaClientes(dadosClientes);
+        }
+
+        //Clientes cadastrados
+        async function BuscarClientes() {
+            const url = "/api/ClientePessoaJuridica";
+            const dados = await axios.get(url).then(result => {
+                console.log(result.data);
+                return result.data;
+            });
+
+            return dados;
+        }
+
+        function MontarTabelaClientes(dadosClientes) {
+            const tabelas = document.getElementById("tableDadosClientes");
+
+            for (var i = 0; i < dadosClientes.length; i++) {
+                const tr = document.createElement('tr');
+
+                let array = [
+                    dadosClientes[i].id,
+                    dadosClientes[i].nome,
+                    dadosClientes[i].cnpj,
+                    dadosClientes[i].razaoSocial,
+                    dadosClientes[i].valorMonetario,
+                    dadosClientes[i].atividades,
+                    dadosClientes[i].usuario.nome,
+                ];
+
+                array.forEach(function (valor) {
+                    const td = document.createElement('td');
+                    td.innerHTML = valor;
+                    tr.appendChild(td)
+                });
+
+                tabelas.appendChild(tr)
+            }
+
+        }
+        init();
+    </script>
+</body>
+
+</html>
