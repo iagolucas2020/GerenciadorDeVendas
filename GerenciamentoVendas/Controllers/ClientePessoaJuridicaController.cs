@@ -83,14 +83,12 @@ namespace GerenciamentoVendas.Controllers
                 //Puxar lista de usuarios cadastrados com o codigo da Região
                 List<Usuario> listUsuarios = UsuarioService.GetAllUsuarios();
 
-                //Filtrar Usuario que esta mais tempo se receber contato da região que vai receber o contato
-                List<Usuario> users = listUsuarios.FindAll(u => u.Regioes == (Enum.Parse<Regioes>(cliente.CodigoIbge.ToString().Substring(0, 1))));
-                if (users.Count == 0)
+                //Roleta Funcionario
+                Usuario user = cliente.RoletaUsuario(listUsuarios, cliente);
+                if (user == null)
                 {
                     return BadRequest("Não existe Usuario nesta região, por favor realizar o cadastro de usuário nesta região antes.");
-                }
-                DateTime MinDate = (from d in users select d.DataAtualizacaoRegiao).Min();
-                Usuario user = users.Find(u => u.DataAtualizacaoRegiao == MinDate);
+                };
 
                 //Fazer Insert do cliente
                 ClientePessoaJuridicaService.PostClientePessoaJuridica(cliente, user.Id, mensagem);

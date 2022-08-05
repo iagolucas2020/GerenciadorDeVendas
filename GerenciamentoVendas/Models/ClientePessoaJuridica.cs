@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using GerenciamentoVendas.Models.Enums;
 using GerenciamentoVendas.Services;
 
 namespace GerenciamentoVendas.Models
@@ -48,6 +51,27 @@ namespace GerenciamentoVendas.Models
         public void LimparCaractersCnpj()
         {
             this.Cnpj = Cnpj.Replace(".", "").Replace("/", "").Replace("-", "");
+        }
+
+        public Usuario RoletaUsuario(List<Usuario> listUsuarios, ClientePessoaJuridica cliente)
+        {
+            try
+            {
+                //Filtrar Usuario que esta mais tempo se receber contato da região que vai receber o contato
+                List<Usuario> users = listUsuarios.FindAll(u => u.Regioes == (Enum.Parse<Regioes>(cliente.CodigoIbge.ToString().Substring(0, 1))));
+                if (users.Count == 0)
+                {
+                    return null;
+                }
+                DateTime MinDate = (from d in users select d.DataAtualizacaoRegiao).Min();
+                Usuario user = users.Find(u => u.DataAtualizacaoRegiao == MinDate);
+                return user;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
     }
 }

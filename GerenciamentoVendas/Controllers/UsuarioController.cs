@@ -14,7 +14,6 @@ namespace GerenciamentoVendas.Controllers
     {
         // GET Geral
         [HttpGet]
-        [DisableCors]
         public IActionResult Get()
         {
             try
@@ -24,7 +23,6 @@ namespace GerenciamentoVendas.Controllers
                 {
                     return NotFound("Dados não encontrados");
                 }
-                //return Ok(list);
                 return Ok(list);
             }
             catch (Exception e)
