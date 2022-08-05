@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -10,7 +11,6 @@
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <title>Gerenciador Vendas</title>
-    <link rel="stylesheet" href="./css/style.css">
     <style>
 
         body {
@@ -23,13 +23,13 @@
             padding: 0px;
         }
 
-        #cadastro {
+        #cadastroUsuario {
             border: solid 1px gray;
             padding: 40px;
             background: #d3d3d3;
         }
 
-        .form {
+        .formCadastro {
             margin-top: 30px;
         }
 
@@ -80,13 +80,13 @@
     <!-- HEADER -->
     <div class="container-fluid">
         <header class="row" id="header">
-            <h3 class="text-success">Cadastro Clientes</h3>
+            <h3 class="text-success">Oportunidades</h3>
         </header>
         <nav id="navbar" class="container">
             <div class="row justify-content-center">
                 <a href="/api/Usuario/Usuarios?#">Usuários</a>
-                <a href="#" class="disabled">Clientes</a>
-                <a href="/api/Usuario/Oportunidades?#">Oportunidades</a>
+                <a href="/api/ClientePessoaJuridica/Clientes?#">Clientes</a>
+                <a href="/api/Usuario/Oportunidades?#" class="disabled">Oportunidades</a>
             </div>
         </nav>
     </div>
@@ -94,24 +94,10 @@
     <div class="container">
         <div class="row">
             <div class="row">
-                <form class="form" id="cadastro">
+                <form class="formCadastro" id="cadastroUsuario">
                     <div class="row">
-                        <div class="col form-group m-2">
-                            <label for="cnpj">CNPJ</label>
-                            <input type="text" class="form-control" id="cnpj">
-                        </div>
-                        <div class="col form-group m-2">
-                            <label for="nome">Nome</label>
-                            <input type="text" class="form-control" id="nome">
-                        </div>
-                        <div class="col form-group m-2">
-                            <label for="valor">Valor Monetário</label>
-                            <input type="number" class="form-control" id="valor">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-1 offset-md-11">
-                            <button onclick="Gravar()" style="text-align:center" class="btn btn-success gravarUsuario">Gravar</button>
+                        <div id="selectUsers" class="col form-group m-2">
+                            <label for="regiao">Usuário:</label>
                         </div>
                     </div>
                 </form>
@@ -119,95 +105,94 @@
             <div class="row">
                 <div class="tabelas">
                     <table class="table table-dark table-striped table-bordered">
-                        <thead>
+                        <thead class="thead-dark">
                             <tr>
                                 <th>Id</th>
                                 <th>Nome</th>
-                                <th>Cnpj</th>
+                                <th>Email</th>
+                                <th>CNPJ</th>
                                 <th>Razão Social</th>
-                                <th>Valor Monetário</th>
-                                <th>Atividades</th>
-                                <th>Usuário Responsável</th>
+                                <th>Valor Monetario</th>
+                                <th>Região</th>
                             </tr>
                         </thead>
-                        <tbody id="tableDadosClientes">
+                        <tbody id="tableOportunidades">
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
 
-        async function Gravar() {
-            debugger;
-            const url = "/api/ClientePessoaJuridica";
+        async function selectUsuarios() {
+            $('#selectUsers').empty();
+            const div = document.getElementById("selectUsers");
+            const select = document.createElement("select");
+            select.setAttribute('class', 'form-control');
+            select.setAttribute('id', 'users');
 
-            let cnpj = document.getElementById('cnpj');
-            let nome = document.getElementById('nome');
-            let valor = document.getElementById('valor');
-            valor.value.replace(",", ".");
-
-            if (cnpj.value == "" || nome.value == "" || valor.value == "") {
-                alert("Preencher todos os dados, para o Cliente!");
-                return
-            }
-
-            await axios.post(url, { cnpj: cnpj.value, nome: nome.value, valorMonetario: valor.value })
-                .then(function (result) {
-                    alert('Success');
-                    limpar(cnpj, nome, valor);
-                    init();
-                })
-                .catch(function (error) {
-                    if (error.response) {
-                        alert(error.response.data);
-                    }
-                });;
-        }
-
-        function limpar(cnpj, nome, valor) {
-            cnpj.value = "";
-            nome.value = "";
-            valor.value = "";
-        }
-
-        async function init() {
-            //Clientes cadastrados
-            $('#tableDadosClientes').empty();
-            const dadosClientes = await BuscarClientes();
-            MontarTabelaClientes(dadosClientes);
-        }
-
-        //Clientes cadastrados
-        async function BuscarClientes() {
-            const url = "/api/ClientePessoaJuridica";
+            const url = "/api/Usuario";
             const dados = await axios.get(url).then(result => {
                 console.log(result.data);
                 return result.data;
             });
 
-            return dados;
+            const objSelecione = {
+                id: '',
+                nome: 'Selecione...',
+            }
+
+            dados.unshift(objSelecione);
+
+            dados.forEach(function (item) {
+                let nome = item.nome;
+                let value = item.id;
+                const option = document.createElement('option');
+                option.innerText = nome;
+                option.value = value;
+                select.appendChild(option);
+            });
+
+            div.appendChild(select);
+
+            select.addEventListener('change', BuscarUsuarios);
+
         }
 
-        function MontarTabelaClientes(dadosClientes) {
-            const tabelas = document.getElementById("tableDadosClientes");
+        async function init() {
+            await selectUsuarios();
+        }
 
-            for (var i = 0; i < dadosClientes.length; i++) {
+        //Usuarios cadastrados
+        async function BuscarUsuarios() {
+            $('#tableOportunidades').empty();
+            const id = document.getElementById('users').value
+            const url = "/api/Usuario/GetOportunidadesUsuario?id=" + id;
+            const dados = await axios.get(url).then(result => {
+                MontarTabelaUsuario(result.data);
+            }).catch(function (error) {
+                alert("Não Possui nenhuma oportunidade vinculada!")
+            });
+        }
+
+        function MontarTabelaUsuario(dadosUsuario) {
+            const tabelas = document.getElementById("tableOportunidades");
+
+            for (var i = 0; i < dadosUsuario.length; i++) {
                 const tr = document.createElement('tr');
 
                 let array = [
-                    dadosClientes[i].id,
-                    dadosClientes[i].nome,
-                    dadosClientes[i].cnpj,
-                    dadosClientes[i].razaoSocial,
-                    dadosClientes[i].valorMonetario,
-                    dadosClientes[i].atividades,
-                    dadosClientes[i].usuario.nome,
+                    dadosUsuario[i].id,
+                    dadosUsuario[i].nome,
+                    dadosUsuario[i].email,
+                    dadosUsuario[i].clientePessoaJuridica.cnpj,
+                    dadosUsuario[i].clientePessoaJuridica.razaoSocial,
+                    dadosUsuario[i].clientePessoaJuridica.valorMonetario,
+                    dadosUsuario[i].regioes,
                 ];
 
                 array.forEach(function (valor) {
@@ -220,6 +205,7 @@
             }
 
         }
+
         init();
     </script>
 </body>

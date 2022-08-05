@@ -3,7 +3,9 @@ using GerenciamentoVendas.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System;
+using Microsoft.AspNetCore.Cors;
 using System.IO;
+using Nancy.Json;
 
 namespace GerenciamentoVendas.Controllers
 {
@@ -12,6 +14,7 @@ namespace GerenciamentoVendas.Controllers
     {
         // GET Geral
         [HttpGet]
+        [DisableCors]
         public IActionResult Get()
         {
             try
@@ -21,6 +24,7 @@ namespace GerenciamentoVendas.Controllers
                 {
                     return NotFound("Dados não encontrados");
                 }
+                //return Ok(list);
                 return Ok(list);
             }
             catch (Exception e)
@@ -99,6 +103,17 @@ namespace GerenciamentoVendas.Controllers
         public IActionResult ViewUsuarios()
         {
             var html = System.IO.File.ReadAllText(@"./Views/Usuarios/Usuarios.cshtml");
+            return new ContentResult
+            {
+                Content = html,
+                ContentType = "text/html"
+            };
+        }
+
+        [HttpGet("Oportunidades")]
+        public IActionResult ViewOportunidades()
+        {
+            var html = System.IO.File.ReadAllText(@"./Views/Usuarios/Oportunidades.cshtml");
             return new ContentResult
             {
                 Content = html,
