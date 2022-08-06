@@ -6,7 +6,7 @@
 
 <h3>USUÁRIOS:<h3>
 <h5>Como funciona ? Precisa cadastrar(POST) um usuário(Vendedor), utilizando a 
-Url - <a>https://localhost:5001/api/Usuario</a> o cadastro exige dados,<h5>
+Url - https://localhost:5001/api/Usuario o cadastro exige dados,<h5>
 
 ```json
 {
