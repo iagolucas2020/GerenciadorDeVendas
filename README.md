@@ -7,6 +7,7 @@
 <h3>USUÁRIOS:<h3>
 <h5>Como funciona ? Precisa cadastrar(POST) um usuário(Vendedor), utilizando a 
 Url - https://localhost:5001/api/Usuario o cadastro exige dados,<h5>
+
 ```json
 {
     "nome": "nome",
@@ -14,8 +15,10 @@ Url - https://localhost:5001/api/Usuario o cadastro exige dados,<h5>
     "regioes": 1, 2, 3, 4 ou 5
 }
 ```
+
 <h5>Após realizar o cadastro, pode-se fazer um GET de todos os usuários, com link abaixo
 Url - https://localhost:5001/api/Usuario, vai retornar um array de objetos,<h5>
+    
 ```json
 {
      "email": "email@email.com",
@@ -26,8 +29,10 @@ Url - https://localhost:5001/api/Usuario, vai retornar um array de objetos,<h5>
      "nome": ""
 }
 ```
+    
 <h5>Ou, pode-se fazer GET pelo ID do usuário, com o link abaixo,
 Url - https://localhost:5001/api/Usuario/id, vai retornar um objeto,<h5>
+    
 ```json
 {
      "email": "email@email.com",
@@ -39,9 +44,11 @@ Url - https://localhost:5001/api/Usuario/id, vai retornar um objeto,<h5>
 }
 ```
 
+    
 <h3>CLIENTES<h3>
 <h5>Como funciona ? Para cadastrar(POST) um Cliente exigi-se um cadastro de um Usuário na região do cliente, para esse cadastro, precisa-se utilizar a 
 Url - https://localhost:5001/api/ClientePessoaJuridica, os dados para cadastro abaixo,<h5>
+    
 ```json
 {
     "cnpj": "00.000.000/0000-00",
@@ -49,8 +56,10 @@ Url - https://localhost:5001/api/ClientePessoaJuridica, os dados para cadastro a
     "valorMonetario": 0.00
 }
 ```
+    
 <h5>Após realizar o cadastro, pode-se fazer um GET de todos os Clientes, com link abaixo
 Url - https://localhost:5001/api/ClientePessoaJuridica, vai retornar um array de objetos,<h5>
+    
 ```json
 {
         "cnpj": "00000000000000",
@@ -70,8 +79,10 @@ Url - https://localhost:5001/api/ClientePessoaJuridica, vai retornar um array de
         "nome": "nome"
 }
 ```
+    
 <h5>Ou, pode-se fazer GET pelo ID do Cliente, com o link abaixo,
 Url - https://localhost:5001/api/ClientePessoaJuridica/id, vai retornar um objeto,<h5>
+    
 ```json
 {
     "cnpj": "00000000000000",
@@ -84,9 +95,11 @@ Url - https://localhost:5001/api/ClientePessoaJuridica/id, vai retornar um objet
     "nome": "nome"
 }
 ```
+    
 <h3>OPORTUNIDADES<h3>
 <h5>Como funciona ? As oportunidades puxaram tadas a oportunidades de negocio do Usuario, para isso utiliza-se a link abaixo,
 Url - https://localhost:5001/api/Usuario/GetOportunidadesUsuario?id=0, vai retornar um array de objetos,<h5>
+    
 ```json
 {
         "email": "email@email.com",
@@ -107,6 +120,7 @@ Url - https://localhost:5001/api/Usuario/GetOportunidadesUsuario?id=0, vai retor
 }
 ```
 
+    
 <h1>Tecnologias Utilizadas:<h1>
 <h3>BACK-END:<h3>
 <p>.Net FRAMEWORK - o qual realizei a criação dos endpoint, que pode ser consumida com os link acima. O endpoint fica na controladora, o que faz a comunicação do a camada de Serviço, que faz a comunicação com a camada DAL, que faz a buscas no banco de dados e retorna as informações.<p>
