@@ -18,7 +18,11 @@ namespace GerenciamentoVendas.Models
         public ClientePessoaJuridica()
         {
         }
-
+        public ClientePessoaJuridica(string cnpj, int codigoIbge)
+        {
+            Cnpj = cnpj;
+            CodigoIbge = codigoIbge;
+        }
         public ClientePessoaJuridica(int id)
         {
             ClientePessoaJuridica cliente = ClientePessoaJuridicaService.GetByIdClientePessoaJuridica(id);

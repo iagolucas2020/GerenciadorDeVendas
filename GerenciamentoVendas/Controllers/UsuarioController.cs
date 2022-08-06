@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Cors;
 using System.IO;
 using Nancy.Json;
 
+
 namespace GerenciamentoVendas.Controllers
 {
     [Route("api/[controller]")]
