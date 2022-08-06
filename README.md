@@ -1,6 +1,6 @@
 # GerenciadorDeVendas
-O que é a aplicação ? A aplicação tem a finalidade de gerenciar os CLIENTES dos USUÁRIOS. Conforme são cadastrados os clientes, as informações dos clientes são passadas por uma espécie de ROLETA, a qual identifica os usuários daquela REGIÃO. Assim que geradas a lista dos USUARIOS, caso seja mais de um que atenda a região, é selecionado AQUELE que esta a mais tempo sem receber contato.
-Para fazer POST e GET, estava utilizando o POSTAMAN.
+<h6>O que é a aplicação ? A aplicação tem a finalidade de gerenciar os CLIENTES dos USUÁRIOS. Conforme são cadastrados os clientes, as informações dos clientes são passadas por uma espécie de ROLETA, a qual identifica os usuários daquela REGIÃO. Assim que geradas a lista dos USUARIOS, caso seja mais de um que atenda a região, é selecionado AQUELE que esta a mais tempo sem receber contato.<h6/>
+<p>Para fazer POST e GET, estava utilizando o POSTAMAN.<p>
 
 API's
 
