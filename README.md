@@ -7,6 +7,7 @@ API's
 ***USUÁRIOS:
 ->Como funciona ? Precisa cadastrar(POST) um usuário(Vendedor), utilizando a 
 Url - https://localhost:5001/api/Usuario o cadastro exige dados,
+
 {
     "nome": "nome",
     "email": "email@email.com",
@@ -14,6 +15,7 @@ Url - https://localhost:5001/api/Usuario o cadastro exige dados,
 }
 ->Após realizar o cadastro, pode-se fazer um GET de todos os usuários, com link abaixo
 Url - https://localhost:5001/api/Usuario, vai retornar um array de objetos,
+
 {
      "email": "email@email.com",
      "regioes": 0,
@@ -24,6 +26,7 @@ Url - https://localhost:5001/api/Usuario, vai retornar um array de objetos,
 }
 ->Ou, pode-se fazer GET pelo ID do usuário, com o link abaixo,
 Url - https://localhost:5001/api/Usuario/id, vai retornar um objeto,
+
 {
      "email": "email@email.com",
      "regioes": 0,
@@ -36,6 +39,7 @@ Url - https://localhost:5001/api/Usuario/id, vai retornar um objeto,
 ***CLIENTES
 ->Como funciona ? Para cadastrar(POST) um Cliente exigi-se um cadastro de um Usuário na região do cliente, para esse cadastro, precisa-se utilizar a 
 Url - https://localhost:5001/api/ClientePessoaJuridica, os dados para cadastro abaixo,
+
 {
     "cnpj": "00.000.000/0000-00",
     "nome": "nome",
@@ -43,6 +47,7 @@ Url - https://localhost:5001/api/ClientePessoaJuridica, os dados para cadastro a
 }
 ->Após realizar o cadastro, pode-se fazer um GET de todos os Clientes, com link abaixo
 Url - https://localhost:5001/api/ClientePessoaJuridica, vai retornar um array de objetos,
+
 {
         "cnpj": "00000000000000",
         "valorMonetario": 0.00,
@@ -62,6 +67,7 @@ Url - https://localhost:5001/api/ClientePessoaJuridica, vai retornar um array de
 }
 ->Ou, pode-se fazer GET pelo ID do Cliente, com o link abaixo,
 Url - https://localhost:5001/api/ClientePessoaJuridica/id, vai retornar um objeto,
+
 {
     "cnpj": "00000000000000",
     "valorMonetario": 0.00,
@@ -76,6 +82,7 @@ Url - https://localhost:5001/api/ClientePessoaJuridica/id, vai retornar um objet
 ***OPORTUNIDADES
 ->Como funciona ? As oportunidades puxaram tadas a oportunidades de negocio do Usuario, para isso utiliza-se a link abaixo,
 Url - https://localhost:5001/api/Usuario/GetOportunidadesUsuario?id=0, vai retornar um array de objetos,
+
 {
         "email": "email@email.com",
         "regioes": 0,
