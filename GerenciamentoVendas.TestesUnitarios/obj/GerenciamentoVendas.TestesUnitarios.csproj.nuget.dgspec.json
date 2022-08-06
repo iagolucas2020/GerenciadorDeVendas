@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\iagol\\Desktop\\GerenciamentoVendasAtualizado\\GerenciadorDeVendas\\GerenciamentoVendas.TestesUnitarios\\GerenciamentoVendas.TestesUnitarios.csproj": {}
+    "C:\\Users\\iagol\\Desktop\\Gerenciamento\\GerenciadorDeVendas\\GerenciamentoVendas.TestesUnitarios\\GerenciamentoVendas.TestesUnitarios.csproj": {}
   },
   "projects": {
-    "C:\\Users\\iagol\\Desktop\\GerenciamentoVendasAtualizado\\GerenciadorDeVendas\\GerenciamentoVendas.TestesUnitarios\\GerenciamentoVendas.TestesUnitarios.csproj": {
+    "C:\\Users\\iagol\\Desktop\\Gerenciamento\\GerenciadorDeVendas\\GerenciamentoVendas.TestesUnitarios\\GerenciamentoVendas.TestesUnitarios.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\iagol\\Desktop\\GerenciamentoVendasAtualizado\\GerenciadorDeVendas\\GerenciamentoVendas.TestesUnitarios\\GerenciamentoVendas.TestesUnitarios.csproj",
+        "projectUniqueName": "C:\\Users\\iagol\\Desktop\\Gerenciamento\\GerenciadorDeVendas\\GerenciamentoVendas.TestesUnitarios\\GerenciamentoVendas.TestesUnitarios.csproj",
         "projectName": "GerenciamentoVendas.TestesUnitarios",
-        "projectPath": "C:\\Users\\iagol\\Desktop\\GerenciamentoVendasAtualizado\\GerenciadorDeVendas\\GerenciamentoVendas.TestesUnitarios\\GerenciamentoVendas.TestesUnitarios.csproj",
+        "projectPath": "C:\\Users\\iagol\\Desktop\\Gerenciamento\\GerenciadorDeVendas\\GerenciamentoVendas.TestesUnitarios\\GerenciamentoVendas.TestesUnitarios.csproj",
         "packagesPath": "C:\\Users\\iagol\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\iagol\\Desktop\\GerenciamentoVendasAtualizado\\GerenciadorDeVendas\\GerenciamentoVendas.TestesUnitarios\\obj\\",
+        "outputPath": "C:\\Users\\iagol\\Desktop\\Gerenciamento\\GerenciadorDeVendas\\GerenciamentoVendas.TestesUnitarios\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -33,8 +33,8 @@
           "netcoreapp2.2": {
             "targetAlias": "netcoreapp2.2",
             "projectReferences": {
-              "C:\\Users\\iagol\\Desktop\\GerenciamentoVendasAtualizado\\GerenciadorDeVendas\\GerenciamentoVendas\\GerenciamentoVendas.csproj": {
-                "projectPath": "C:\\Users\\iagol\\Desktop\\GerenciamentoVendasAtualizado\\GerenciadorDeVendas\\GerenciamentoVendas\\GerenciamentoVendas.csproj"
+              "C:\\Users\\iagol\\Desktop\\Gerenciamento\\GerenciadorDeVendas\\GerenciamentoVendas\\GerenciamentoVendas.csproj": {
+                "projectPath": "C:\\Users\\iagol\\Desktop\\Gerenciamento\\GerenciadorDeVendas\\GerenciamentoVendas\\GerenciamentoVendas.csproj"
               }
             }
           }
@@ -82,14 +82,14 @@
         }
       }
     },
-    "C:\\Users\\iagol\\Desktop\\GerenciamentoVendasAtualizado\\GerenciadorDeVendas\\GerenciamentoVendas\\GerenciamentoVendas.csproj": {
+    "C:\\Users\\iagol\\Desktop\\Gerenciamento\\GerenciadorDeVendas\\GerenciamentoVendas\\GerenciamentoVendas.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\iagol\\Desktop\\GerenciamentoVendasAtualizado\\GerenciadorDeVendas\\GerenciamentoVendas\\GerenciamentoVendas.csproj",
+        "projectUniqueName": "C:\\Users\\iagol\\Desktop\\Gerenciamento\\GerenciadorDeVendas\\GerenciamentoVendas\\GerenciamentoVendas.csproj",
         "projectName": "GerenciamentoVendas",
-        "projectPath": "C:\\Users\\iagol\\Desktop\\GerenciamentoVendasAtualizado\\GerenciadorDeVendas\\GerenciamentoVendas\\GerenciamentoVendas.csproj",
+        "projectPath": "C:\\Users\\iagol\\Desktop\\Gerenciamento\\GerenciadorDeVendas\\GerenciamentoVendas\\GerenciamentoVendas.csproj",
         "packagesPath": "C:\\Users\\iagol\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\iagol\\Desktop\\GerenciamentoVendasAtualizado\\GerenciadorDeVendas\\GerenciamentoVendas\\obj\\",
+        "outputPath": "C:\\Users\\iagol\\Desktop\\Gerenciamento\\GerenciadorDeVendas\\GerenciamentoVendas\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

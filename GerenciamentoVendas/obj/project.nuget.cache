@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pNLqIBQcaZ0plp1puQwiZnHCF/NW1Jfkfc72m1wbtEJtzcHSE1nPtVqJTCP7jlimBiqVe+kI32trGky0qUMxag==",
+  "dgSpecHash": "GtyuGuO4sR1HjblQOjZL6/7coyQGT0s36kqjJLzZS1dathbTwNaYeIpHvBT80a2PLM9He5rYHZp8Gzu2pckKyA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\iagol\\Desktop\\GerenciamentoVendasAtualizado\\GerenciadorDeVendas\\GerenciamentoVendas\\GerenciamentoVendas.csproj",
+  "projectFilePath": "C:\\Users\\iagol\\Desktop\\Gerenciamento\\GerenciadorDeVendas\\GerenciamentoVendas\\GerenciamentoVendas.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\iagol\\.nuget\\packages\\flurl\\3.0.6\\flurl.3.0.6.nupkg.sha512",
     "C:\\Users\\iagol\\.nuget\\packages\\flurl.http\\3.2.4\\flurl.http.3.2.4.nupkg.sha512",
