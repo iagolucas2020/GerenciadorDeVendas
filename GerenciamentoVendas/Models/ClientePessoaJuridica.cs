@@ -67,9 +67,8 @@ namespace GerenciamentoVendas.Models
                 {
                     return null;
                 }
-                DateTime MinDate = (from d in users select d.DataAtualizacaoRegiao).Min();
-                Usuario user = users.Find(u => u.DataAtualizacaoRegiao == MinDate);
-                return user;
+                users.Sort((p1, p2) => p1.DataAtualizacaoRegiao.CompareTo(p2.DataAtualizacaoRegiao));
+                return users[0];
             }
             catch (Exception)
             {
