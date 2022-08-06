@@ -7,6 +7,7 @@
 <h3>USUÁRIOS:<h3>
 <h5>Como funciona ? Precisa cadastrar(POST) um usuário(Vendedor), utilizando a 
 Url - https://localhost:5001/api/Usuario o cadastro exige dados,<h5>
+
 ```json
 {
     "nome": "nome",
@@ -14,6 +15,7 @@ Url - https://localhost:5001/api/Usuario o cadastro exige dados,<h5>
     "regioes": 1, 2, 3, 4 ou 5
 }
 ```
+
 <h5>Após realizar o cadastro, pode-se fazer um GET de todos os usuários, com link abaixo
 Url - https://localhost:5001/api/Usuario, vai retornar um array de objetos,<h5>
 ```json
