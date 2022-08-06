@@ -103,7 +103,7 @@ Url - https://localhost:5001/api/Usuario/GetOportunidadesUsuario?id=0, vai retor
             "nome": "nome"
         },
         "id": 0,
-        "nome": "nome
+        "nome": "nome"
 }
 ```
 
