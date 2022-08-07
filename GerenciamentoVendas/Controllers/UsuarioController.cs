@@ -20,10 +20,7 @@ namespace GerenciamentoVendas.Controllers
             try
             {
                 List<Usuario> list = UsuarioService.GetAllUsuarios();
-                if (list.Count == 0)
-                {
-                    return NotFound("Dados não encontrados");
-                }
+                if (list.Count == 0) return NotFound("Dados não encontrados");
                 return Ok(list);
             }
             catch (Exception e)
@@ -38,15 +35,9 @@ namespace GerenciamentoVendas.Controllers
         {
             try
             {
-                if (id == 0)
-                {
-                    return BadRequest("Preencher com o Id para puxar as oportunidades do usuário.");
-                }
+                if (id == 0) return BadRequest("Preencher com o Id para puxar as oportunidades do usuário.");
                 List<Usuario> list = UsuarioService.GetOportunidadesUsuario(id);
-                if (list.Count == 0)
-                {
-                    return NotFound("Dados não encontrados");
-                }
+                if (list.Count == 0) return NotFound("Dados não encontrados");
                 return Ok(list);
             }
             catch (Exception e)
@@ -63,10 +54,7 @@ namespace GerenciamentoVendas.Controllers
             try
             {
                 Usuario usuario = UsuarioService.GetByIdUsuario(id);
-                if (usuario.Nome == null)
-                {
-                    return NotFound("Usuário não encontrado");
-                }
+                if (usuario.Nome == null) return NotFound("Usuário não encontrado");
                 return Ok(usuario);
             }
             catch (Exception e)
@@ -83,10 +71,7 @@ namespace GerenciamentoVendas.Controllers
             string mensagem = "";
             try
             {
-                if (usuario == null && usuario.Regioes == 0)
-                {
-                    return BadRequest("Enviar todos os dados para Cadastrar o Usuário.");
-                }
+                if (usuario == null && usuario.Regioes == 0) return BadRequest("Enviar todos os dados para Cadastrar o Usuário.");
                 UsuarioService.PostUsuario(usuario, mensagem);
                 return Ok();
             }

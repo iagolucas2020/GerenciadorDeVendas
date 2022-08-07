@@ -61,14 +61,14 @@ namespace GerenciamentoVendas.Models
         {
             try
             {
-                //Filtrar Usuario que esta mais tempo se receber contato da região que vai receber o contato
-                List<Usuario> users = listUsuarios.FindAll(u => u.Regioes == (Enum.Parse<Regioes>(cliente.CodigoIbge.ToString().Substring(0, 1))));
-                if (users.Count == 0)
-                {
-                    return null;
-                }
-                users.Sort((p1, p2) => p1.DataAtualizacaoRegiao.CompareTo(p2.DataAtualizacaoRegiao));
-                return users[0];
+                //Filtrar Usuario que esta mais tempo se receber contato da região
+                Usuario user = listUsuarios
+                    .Where(u => u.Regioes == Enum.Parse<Regioes>(cliente.CodigoIbge.ToString().Substring(0, 1)))
+                    .OrderBy(u => u.DataAtualizacaoRegiao)
+                    .ThenBy(u => u.Nome)
+                    .FirstOrDefault();
+                if (user == null) return null;                
+                return user;
             }
             catch (Exception)
             {

@@ -25,10 +25,7 @@ namespace GerenciamentoVendas.Controllers
             try
             {
                 List<ClientePessoaJuridica> list = ClientePessoaJuridicaService.GetAllClientePessoaJuridica();
-                if (list.Count == 0)
-                {
-                    return NotFound("Dados não encontrados");
-                }
+                if (list.Count == 0) return NotFound("Dados não encontrados");
                 return Ok(list);
             }
             catch (Exception e)
@@ -44,10 +41,7 @@ namespace GerenciamentoVendas.Controllers
             try
             {
                 ClientePessoaJuridica cliente = ClientePessoaJuridicaService.GetByIdClientePessoaJuridica(id);
-                if (cliente.Nome == null)
-                {
-                    return NotFound("Usuário não encontrado");
-                }
+                if (cliente.Nome == null)return NotFound("Usuário não encontrado");
                 return Ok(cliente);
             }
             catch (Exception e)
@@ -64,18 +58,12 @@ namespace GerenciamentoVendas.Controllers
 
             try
             {
-                if (cliente == null)
-                {
-                    return BadRequest("Enviar todos os dados para Cadastrar o Usuário");
-                }
+                if (cliente == null) return BadRequest("Enviar todos os dados para Cadastrar o Usuário");
                 cliente.LimparCaractersCnpj();
 
                 //Lista de Clientes cadastrados - para verificar cliente cadastrado;
                 List<ClientePessoaJuridica> ListClientes = ClientePessoaJuridicaService.GetAllClientePessoaJuridica();
-                if (ListClientes.Any(c => c.Cnpj == cliente.Cnpj) == true)
-                {
-                    return BadRequest("Já existe cadastro deste Cliente!");
-                }
+                if (ListClientes.Any(c => c.Cnpj == cliente.Cnpj) == true) return BadRequest("Já existe cadastro deste Cliente!");
 
                 //Buscar demais dados do cliente
                 var result = await GetByCnpj(cliente);
@@ -85,10 +73,7 @@ namespace GerenciamentoVendas.Controllers
 
                 //Roleta Funcionario
                 Usuario user = cliente.RoletaUsuario(listUsuarios, cliente);
-                if (user == null)
-                {
-                    return BadRequest("Não existe Usuario nesta região, por favor realizar o cadastro de usuário nesta região antes.");
-                };
+                if (user == null) return BadRequest("Não existe Usuario nesta região, por favor realizar o cadastro de usuário nesta região antes.");
 
                 //Fazer Insert do cliente
                 ClientePessoaJuridicaService.PostClientePessoaJuridica(cliente, user.Id, mensagem);

@@ -124,16 +124,7 @@ namespace GerenciamentoVendas.DAL
                         string atividades = linha["ATIVIDADES"].ToString();
                         DateTime data = !(String.IsNullOrEmpty(linha["DATA_ATUALIZACAO_REGIAO"].ToString())) ? Convert.ToDateTime(linha["DATA_ATUALIZACAO_REGIAO"].ToString()) : Convert.ToDateTime(null);
                         int idCliente = Convert.ToInt32(linha["IDCLIENTE"].ToString());
-
-                        list.Add(new Usuario(
-                            idUsuario,
-                            nome,
-                            email,
-                            data,
-                            Enum.Parse<Regioes>(regiao),
-                            new ClientePessoaJuridica(idCliente)
-                        ));
-
+                        list.Add(new Usuario(idUsuario, nome, email, data, Enum.Parse<Regioes>(regiao), new ClientePessoaJuridica(idCliente)));
                     }
                 }
 
